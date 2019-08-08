@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8"> 
+    <title>Detalhes</title>
+</head> 
+<body> 
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a href="index.html" class=" navbar-brand">Café com leite</a>
+                <div class="collapse navbar-collapse"> 
+                <ul class="navbar-nav mr-auto">
+                   <li class="nav-item ">
+                     <a class="nav-link" href="index.html">List </a>
+                   </li>
+                   <li class="nav-item">
+                     <a class="nav-link" href="create.html">Create</a>
+                   </li>
+                  </ul></div> 
+               </nav>
+      <div class="container" >
+        <form  style="margin-top:20px">
+            <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" id="nome" name="nome" disabled>
+                </div>
+                     
+                <div class="form-group">
+                        <label for="modelo">Modelo</label>
+                        <input type="text" class="form-control"  id="modelo" name="modelo" disabled>
+                </div>
+    
+                <div class="form-group">
+                        <label for="cor">Cor</label>
+                        <input type="text" class="form-control" id="cor" name="cor" disabled>
+                </div>
+                </form>
+        <hr />
+         <a href="index.html" class="btn btn-default">Voltar</a>
+    </div>
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Alerta</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                 Salvo com sucesso!!!
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+    let params = (new URL(document.location)).searchParams;
+    let name = params.get("nome");  
+
+  $.ajax({
+          url: "https://webstoreapps.azurewebsites.net/api/drone/" + name, 
+          success: function(result){
+            console.log(result); 
+            $("#nome").val(result.nome),
+            $("#modelo").val(result.modelo),
+            $("#cor").val(result.cor)
+             b 
+          },
+          beforeSend: function(){
+            console.log("inicio");     		 
+          },
+          error: function(xhr) { 
+            console.log("erro");  
+          }
+    });
+});
+</script>
+</html>
